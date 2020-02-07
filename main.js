@@ -1,9 +1,14 @@
-const vetor =[1,2,3,4,5,6,7,8,9,10];
+const usuario = {
+    nome :'Rick',
+    idade :'28',
+    endereco: {
+        cidade :'Lavras',
+        estado:'MG'
+    },
+};
 
-const newVet = vetor.map(item => item *2);
-console.log(newVet);
+console.log(usuario);
 
-const teste = () => (
-    {nome : 'Rick'}
-);
-console.log(teste());
+const { nome, idade, endereco:{cidade} } = usuario;
+
+console.log(nome, idade, cidade);
