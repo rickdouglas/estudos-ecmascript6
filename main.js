@@ -1,29 +1,22 @@
-class List{
-    constructor(){
-        this.data = [];
-    }
+const vetor =[1,2,3,4,5,6,7,8,9,10];
 
-    add(data){
-        this.data.push(data);
-        console.log(this.data)
-    }
-}
+const newVet = vetor.map(function(item, index){
+    return item + index;
+});
 
-class TodoList extends List{
-    constructor(){
-        super();
+console.log(newVet);
 
-        this.usuario = 'Rick';
-    }
-    mostraUsuario(){
-        console.log(this.usuario);
-    }
+const sum = vetor.reduce(function(total,next){
+    return total + next;
+})
+console.log(sum);
 
+const filtrar = vetor.filter(function(item){
+    return item % 2 === 0;
+});
+console.log(filtrar);
 
-}
-
-const MinhaLista = new TodoList();
-document.getElementById('novo-todo').onclick = function(){
-    MinhaLista.add('novo-todo');
-}
-MinhaLista.mostraUsuario();
+const find = vetor.find(function(item){
+    return item ===10;
+});
+console.log(find);
