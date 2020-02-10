@@ -16,13 +16,26 @@ class App {
         }
 
     }
+    setLoading(loading = true){
+        if(loading === true){
+            let loadingEl = document.createElement('span');
+            loadingEl.appendChild(document.createTextNode('Carregando'));
+            loadingEl.setAttribute('id', 'loading');
+            
+            this.formEl.appendChild(loadingEl);
+        }else{
+            document.getElementById('loading').remove();
+        }
+    }
     async addRepository(event){
         event.preventDefault();
         const repoInput = this.inputEl.value;
 
         if(repoInput.lenght === 0)
             return;
-        
+
+        this.setLoading();
+        try{
         const response = await api.get(`/repos/${repoInput}`);
         
         const {name , description, html_url, owner:{avatar_url}} = response.data;
@@ -37,6 +50,10 @@ class App {
 
         this.inputEl.value = '';
         this.render();
+        }catch(err){
+            alert('O repositorio nao existe');
+        }
+        this.setLoading();
     }
     render(){
         this.listEl.innerHTML='';
